@@ -125,12 +125,12 @@
               </v-layout>              
               <v-layout row>
                 <v-flex xs12 sm6 offset-sm3>
-                  <v-btn 
-                    small 
+                  <v-btn  
                     round 
                     class="primary" 
                     type="submit"
                     :disabled="!formIsValid">
+                    
                     Create Meetup
                   </v-btn>
                 </v-flex>  
