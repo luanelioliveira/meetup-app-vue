@@ -35,7 +35,7 @@
                   <v-text-field
                     name="imageUrl"
                     label="Imagem URL"
-                    id="imagem-url"
+                    id="image-url"
                     v-model="imageUrl"
                     required>
                   </v-text-field>    
@@ -46,6 +46,66 @@
                   <img :src="imageUrl" alt="" height="100px">
                 </v-flex>  
               </v-layout>
+              <v-layout row class="mb-2">
+                <v-flex xs12 sm6 offset-sm3>
+                  <v-menu
+                    ref="menu1"
+                    :close-on-content-click="false"
+                    v-model="menu1"
+                    :nudge-right="40"
+                    lazy
+                    transition="scale-transition"
+                    offset-y
+                    full-width
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <v-text-field
+                      slot="activator"
+                      v-model="dateFormatted"
+                      label="Event's Date"
+                      persistent-hint
+                      prepend-icon="event"
+                      @blur="date = parseDate(dateFormatted)"
+                    >
+                    </v-text-field>
+                    <v-date-picker v-model="date" no-title @input="menu1 = false"></v-date-picker>
+                  </v-menu>
+                </v-flex>
+              </v-layout>
+              <v-layout row>
+                <v-flex xs12 sm6 offset-sm3>
+                  <v-menu
+                    ref="menu"
+                    :close-on-content-click="false"
+                    v-model="menu2"
+                    :nudge-right="40"
+                    :return-value.sync="time"
+                    lazy
+                    transition="scale-transition"
+                    offset-y
+                    full-width
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <v-text-field
+                      slot="activator"
+                      v-model="time"
+                      label="Event's Time"
+                      prepend-icon="access_time"
+                      readonly
+                    >
+                    </v-text-field>
+                    <v-time-picker
+                      v-if="menu2"
+                      v-model="time"
+                      full-width
+                      @change="$refs.menu.save(time)"
+                    >
+                    </v-time-picker>
+                  </v-menu>  
+                </v-flex>
+              </v-layout>    
               <v-layout row>
                 <v-flex xs12 sm6 offset-sm3>
                   <v-textarea
@@ -57,24 +117,7 @@
                     required>
                   </v-textarea>    
                 </v-flex>  
-              </v-layout>
-              <v-layout row>
-                <v-flex xs12 sm6 offset-sm3>
-                  <h3>Choose a Data</h3>
-                </v-flex>
-              </v-layout>
-              <v-layout row class="mb-2">
-                <v-flex xs12 sm6 offset-sm3>
-                  <v-date-picker v-model="date"></v-date-picker>
-                  <p>{{ date }}</p>
-                </v-flex>
-              </v-layout>
-              <v-layout row>
-                <v-flex xs12 sm6 offset-sm3>
-                  <v-time-picker v-model="time" format="24hr"></v-time-picker>
-                    <p>{{ time }}</p>
-                </v-flex>
-              </v-layout>
+              </v-layout>              
               <v-layout row>
                 <v-flex xs12 sm6 offset-sm3>
                   <v-btn 
@@ -103,7 +146,10 @@ export default {
       imageUrl: '',
       description: '',
       date: null,
-      time: null
+      time: null,
+      dateFormatted: null,
+      menu1: false,
+      menu2: false
     }
   },
   computed: {
@@ -111,7 +157,9 @@ export default {
       return this.title !== '' &&
         this.location !== '' &&
         this.imageUrl !== '' &&
-        this.description !== ''
+        this.description !== '' &&
+        (this.date !== '' && this.date !== null) &&
+        (this.time !== '' && this.time !== null)
     },
     submittableDatatime () {
       const date = new Date(this.date)
@@ -130,7 +178,24 @@ export default {
       return date
     }
   },
+  watch: {
+    date (val) {
+      this.dateFormatted = this.formatDate(this.date)
+    }
+  },
   methods: {
+    formatDate (date) {
+      if (!date) return null
+
+      const [year, month, day] = date.split('-')
+      return `${day}/${month}/${year}`
+    },
+    parseDate (date) {
+      if (!date) return null
+
+      const [month, day, year] = date.split('/')
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+    },
     onCreateMeetup () {
       if (!this.formIsValid) {
         return
