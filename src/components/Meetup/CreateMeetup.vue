@@ -175,7 +175,6 @@ export default {
           date.setMinutes(this.time.getMinutes())
         }
       }
-      console.log(date)
       return date
     }
   },
