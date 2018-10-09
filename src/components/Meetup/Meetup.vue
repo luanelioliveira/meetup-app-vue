@@ -12,7 +12,7 @@
           >
           </v-card-media>
           <v-card-text>
-            <h2>{{ meetup.date | date }} - {{ meetup.location }} <v-icon>room</v-icon></h2>
+            <h2>{{ meetup.date | date }} - {{ meetup.location }} <v-icon>location_on</v-icon></h2>
             <div>{{ meetup.description }}</div>
           </v-card-text>
           <v-card-actions>
