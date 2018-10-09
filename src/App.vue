@@ -20,7 +20,9 @@
         >
       </v-toolbar-side-icon>
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">PlanningApp</router-link>
+        <router-link to="/" tag="span" style="cursor: pointer">
+          <img src="https://2018.montreal.wordcamp.org/files/2018/04/meetup-icon-white.png" alt="" height="40px">
+        </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
