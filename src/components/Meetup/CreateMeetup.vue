@@ -14,6 +14,7 @@
                     name="title"
                     label="Title"
                     id="title"
+                    prepend-icon="forum"
                     v-model="title"
                     required>
                   </v-text-field>    
@@ -25,6 +26,7 @@
                     name="location"
                     label="Location"
                     id="location"
+                    prepend-icon="location_on"
                     v-model="location"
                     required>
                   </v-text-field>    
@@ -36,6 +38,7 @@
                     name="imageUrl"
                     label="Imagem URL"
                     id="image-url"
+                    prepend-icon="insert_photo"
                     v-model="imageUrl"
                     required>
                   </v-text-field>    
@@ -113,6 +116,7 @@
                     name="description"
                     label="Description"
                     id="description"
+                    prepend-icon="subject"
                     v-model="description"
                     multi-line
                     required>
