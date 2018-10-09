@@ -129,7 +129,6 @@
                     :disabled="!formIsValid">
                     Create Meetup
                   </v-btn>
-                  {{submittableDatatime}}
                 </v-flex>  
               </v-layout>
           </form>  
@@ -205,7 +204,7 @@ export default {
         location: this.location,
         imageUrl: this.imageUrl,
         description: this.description,
-        date: new Date()
+        date: this.submittableDatatime
       }
       this.$store.dispatch('createMeetup', meetupData)
       this.$router.push('/meetups')
