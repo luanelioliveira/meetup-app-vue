@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
           'https://media.nature.com/w800/magazine-assets/d41586-018-06941-w/d41586-018-06941-w_16129226.jpg',
         id: 'asd12313asddf324fsd342efs',
         title: 'Meetup in New York',
-        date: '2018-10-01',
+        date: new Date(),
         location: 'New York',
         description: 'New York, New York'
       },
@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
           'https://abrilviagemeturismo.files.wordpress.com/2016/11/thinkstockphotos-4549879531.jpeg',
         id: '12313sadad132213',
         title: 'Meetup in Paris',
-        date: '2018-10-02',
+        date: new Date(),
         location: 'Paris',
         description: 'It\'s Paris!'
       }

@@ -5,6 +5,7 @@ import Vuetify from 'vuetify'
 import './stylus/main.styl'
 import colors from 'vuetify/es5/util/colors'
 import { store } from './store'
+import DateFilter from './filters/date'
 
 Vue.use(Vuetify, {
   theme: {
@@ -19,6 +20,7 @@ Vue.use(Vuetify, {
 })
 
 Vue.config.productionTip = false
+Vue.filter('date', DateFilter)
 
 /* eslint-disable no-new */
 new Vue({
