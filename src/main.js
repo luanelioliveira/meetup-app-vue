@@ -6,6 +6,7 @@ import './stylus/main.styl'
 import colors from 'vuetify/es5/util/colors'
 import { store } from './store'
 import DateFilter from './filters/date'
+import * as firebase from 'firebase'
 
 Vue.use(Vuetify, {
   theme: {
@@ -27,5 +28,15 @@ new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyD9ojSX7KPtJiJmeCc-iUs5xxFYzYQt7eQ',
+      authDomain: 'meetup-app-e3f0b.firebaseapp.com',
+      databaseURL: 'https://meetup-app-e3f0b.firebaseio.com',
+      projectId: 'meetup-app-e3f0b',
+      storageBucket: 'meetup-app-e3f0b.appspot.com',
+      messagingSenderId: '145997471342'
+    })
+  }
 })
