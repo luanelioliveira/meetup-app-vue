@@ -5,26 +5,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    loadedMeetups: [
-      {
-        imageUrl:
-          'https://media.nature.com/w800/magazine-assets/d41586-018-06941-w/d41586-018-06941-w_16129226.jpg',
-        id: 'asd12313asddf324fsd342efs',
-        title: 'Meetup in New York',
-        date: new Date(),
-        location: 'New York',
-        description: 'New York, New York'
-      },
-      {
-        imageUrl:
-          'https://abrilviagemeturismo.files.wordpress.com/2016/11/thinkstockphotos-4549879531.jpeg',
-        id: '12313sadad132213',
-        title: 'Meetup in Paris',
-        date: new Date(),
-        location: 'Paris',
-        description: 'It\'s Paris!'
-      }
-    ],
+    loadedMeetups: [],
     user: null,
     loading: false,
     error: null
@@ -64,7 +45,8 @@ export const store = new Vuex.Store({
                 description: obj[key].description,
                 imageUrl: obj[key].imageUrl,
                 date: obj[key].date,
-                location: obj[key].location
+                location: obj[key].location,
+                creatorId: obj[key].creatorId
               })
             }
             commit('setLoadedMeetups', meetups)
@@ -78,13 +60,14 @@ export const store = new Vuex.Store({
           }
         )
     },
-    createMeetup ({commit}, payload) {
+    createMeetup ({commit, getters}, payload) {
       const meetup = {
         title: payload.title,
         location: payload.location,
         imageUrl: payload.imageUrl,
         description: payload.description,
-        date: payload.date.toISOString()
+        date: payload.date.toISOString(),
+        creatorId: getters.user.id
       }
 
       firebase.database().ref('meetups').push(meetup)
@@ -146,6 +129,13 @@ export const store = new Vuex.Store({
     },
     clearError ({commit}) {
       commit('clearError')
+    },
+    autoSignIn ({commit}, payload) {
+      commit('setUser', {id: payload.uid, registredMeetups: []})
+    },
+    logout ({commit}) {
+      firebase.auth().signOut()
+      commit('setUser', null)
     }
   },
   getters: {
