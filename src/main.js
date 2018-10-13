@@ -6,7 +6,7 @@ import './stylus/main.styl'
 import colors from 'vuetify/es5/util/colors'
 import { store } from './store'
 import DateFilter from './filters/date'
-import * as firebase from 'firebase'
+import firebase from 'firebase'
 
 Vue.use(Vuetify, {
   theme: {
