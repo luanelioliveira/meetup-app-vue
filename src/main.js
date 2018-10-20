@@ -9,6 +9,7 @@ import DateFilter from './filters/date'
 import firebase from 'firebase'
 import AlertCmp from './components/Shared/Alert'
 import EditMeetupDetailsDialog from './components/Meetup/Edit/EditMeetupDetailsDialog'
+import EditMeetupDateDialog from './components/Meetup/Edit/EditMeetupDateDialog'
 
 Vue.use(Vuetify, {
   theme: {
@@ -26,6 +27,7 @@ Vue.config.productionTip = false
 Vue.filter('date', DateFilter)
 Vue.component('app-alert', AlertCmp)
 Vue.component('app-edit-meetup-details-dialog', EditMeetupDetailsDialog)
+Vue.component('app-edit-meetup-date-dialog', EditMeetupDateDialog)
 
 /* eslint-disable no-new */
 new Vue({

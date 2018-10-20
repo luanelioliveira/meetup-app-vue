@@ -19,9 +19,7 @@
             <h4 class="primary--text">{{ meetup.title }}</h4>
             <template v-if="userIsCreator">
               <v-spacer></v-spacer>
-              <app-edit-meetup-details-dialog
-                :meetup="meetup"
-              >
+              <app-edit-meetup-details-dialog :meetup="meetup">
               </app-edit-meetup-details-dialog>
             </template>
           </v-card-title>
@@ -32,6 +30,9 @@
           </v-card-media>
           <v-card-text>
             <h6>{{ meetup.date | date }} - {{ meetup.location }} <v-icon>location_on</v-icon></h6>
+            <div v-if="userIsCreator">
+              <app-edit-meetup-date-dialog :meetup="meetup"></app-edit-meetup-date-dialog>
+            </div>
             <div>{{ meetup.description }}</div>
           </v-card-text>
           <v-card-actions>
