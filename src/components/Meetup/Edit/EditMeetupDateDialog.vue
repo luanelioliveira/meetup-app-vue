@@ -5,6 +5,7 @@
     v-model="editDialog">
     <v-btn accent slot="activator" class="primary">
       Edit Date
+      <v-icon right dark>event</v-icon>
     </v-btn>
     <v-card>
       <v-container>
