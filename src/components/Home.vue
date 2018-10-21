@@ -1,5 +1,12 @@
 <template>
     <v-container>
+        <v-layout row wrap v-if="userIsAuthenticated">
+          <v-flex xs12>
+            <div class="text-xs-center">
+              <h5>Seja bem vindo(a), {{userAuthenticated.displayName}}!</h5>
+            </div>
+            </v-flex>
+        </v-layout>
         <v-layout row wrap>
             <v-flex xs12 sm6 class="text-xs-center text-sm-right">
                 <v-btn large router to="/meetups" class="primary">Explorer Meetups</v-btn>
@@ -8,7 +15,7 @@
                 <v-btn large router to="/meetup/new" class="primary">Organize Meetups</v-btn>
             </v-flex>
         </v-layout>
-        <v-layout>
+        <v-layout row wrap>
           <v-flex xs12>
             <div class="text-xs-center">
               <v-progress-circular
@@ -17,7 +24,10 @@
                 :width="7"
                 :size="70"
                 v-if="loading"
-              ></v-progress-circular>
+              >
+                <br />
+                <br />
+              </v-progress-circular>
             </div>
           </v-flex>
         </v-layout>
@@ -55,6 +65,12 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
+    },
+    userIsAuthenticated () {
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+    },
+    userAuthenticated () {
+      return this.$store.getters.user
     }
   },
   methods: {
