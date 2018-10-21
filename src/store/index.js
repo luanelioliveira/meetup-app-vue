@@ -138,17 +138,27 @@ export const store = new Vuex.Store({
     signUserUp ({commit}, payload) {
       commit('setLoading', true)
       commit('clearError')
+      let user = null
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-        .then(
-          user => {
-            commit('setLoading', false)
-            const newUser = {
-              id: user.uid,
-              registredMeetups: []
-            }
-            commit('setUser', newUser)
+        .then(function () {
+          user = firebase.auth().currentUser
+          user.updateProfile({
+            displayName: payload.name,
+            photoURL: ''
+          })
+        })
+        .then(function () {
+          user = firebase.auth().currentUser
+          const userApp = {
+            id: user.uid,
+            displayName: user.displayName,
+            registredMeetups: []
           }
-        )
+          commit('setUser', userApp)
+        })
+        .then(function () {
+          commit('setLoading', false)
+        })
         .catch(
           error => {
             commit('setLoading', false)
@@ -164,11 +174,12 @@ export const store = new Vuex.Store({
         .then(
           user => {
             commit('setLoading', false)
-            const newUser = {
+            const userLoaded = {
               id: user.uid,
+              displayName: user.displayName,
               registredMeetups: []
             }
-            commit('setUser', newUser)
+            commit('setUser', userLoaded)
           }
         )
         .catch(
@@ -183,7 +194,12 @@ export const store = new Vuex.Store({
       commit('clearError')
     },
     autoSignIn ({commit}, payload) {
-      commit('setUser', {id: payload.uid, registredMeetups: []})
+      commit('setUser',
+        {
+          id: payload.uid,
+          displayName: payload.displayName,
+          registredMeetups: []
+        })
     },
     logout ({commit}) {
       firebase.auth().signOut()

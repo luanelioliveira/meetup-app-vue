@@ -13,6 +13,18 @@
                       <v-layout row>
                           <v-flex xs12>
                               <v-text-field
+                                  name = "name"
+                                  label = "Name"
+                                  id = "name"
+                                  v-model = "name"
+                                  type = "text"
+                                  required>
+                              </v-text-field>
+                          </v-flex>
+                      </v-layout>                      
+                      <v-layout row>
+                          <v-flex xs12>
+                              <v-text-field
                                   name = "email"
                                   label = "Email"
                                   id = "email"
@@ -73,6 +85,7 @@
 export default {
   data () {
     return {
+      name: '',
       email: '',
       password: '',
       confirmPassword: ''
@@ -101,7 +114,12 @@ export default {
   },
   methods: {
     onSignup () {
-      this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
+      this.$store.dispatch('signUserUp',
+        {
+          name: this.name,
+          email: this.email,
+          password: this.password
+        })
     },
     onDismissed () {
       console.log('Dismissed Alert!')
