@@ -152,6 +152,7 @@ export const store = new Vuex.Store({
           const userApp = {
             id: user.uid,
             displayName: user.displayName,
+            email: user.email,
             registredMeetups: []
           }
           commit('setUser', userApp)
@@ -177,6 +178,7 @@ export const store = new Vuex.Store({
             const userLoaded = {
               id: user.uid,
               displayName: user.displayName,
+              email: user.email,
               registredMeetups: []
             }
             commit('setUser', userLoaded)
@@ -198,6 +200,7 @@ export const store = new Vuex.Store({
         {
           id: payload.uid,
           displayName: payload.displayName,
+          email: payload.email,
           registredMeetups: []
         })
     },

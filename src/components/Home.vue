@@ -39,6 +39,8 @@
                     v-for="meetup in meetups"
                     :key="meetup.id"
                     :src="meetup.imageUrl"
+                    tag="span" 
+                    style="cursor: pointer"
                     @click="onLoadMeetup(meetup.id)"
                     >
                     <div class="title">
