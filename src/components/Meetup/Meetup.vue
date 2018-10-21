@@ -35,7 +35,7 @@
             </div>
             <div>{{ meetup.description }}</div>
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions v-if="userIsCreator">
             <v-spacer></v-spacer>
             <v-btn class="primary">Register</v-btn>
           </v-card-actions>
