@@ -111,12 +111,12 @@ export default {
   computed: {
     menuItems () {
       let menuItems = [
-        { icon: 'face', title: 'Sign up', link: '/signup' },
-        { icon: 'lock_open', title: 'Sign in', link: '/signin' }
+        { icon: 'face', title: 'Sign Up', link: '/signup' },
+        { icon: 'lock_open', title: 'Login', link: '/signin' }
       ]
       if (this.userIsAuthenticated) {
         menuItems = [
-          { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups' },
+          { icon: 'supervisor_account', title: 'Meetups', link: '/meetups' },
           { icon: 'room', title: 'Organize Meetup', link: '/meetup/new' }
         ]
       }
