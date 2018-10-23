@@ -9,10 +9,10 @@
         </v-layout>
         <v-layout row wrap>
             <v-flex xs12 sm6 class="text-xs-center text-sm-right">
-                <v-btn large router to="/meetups" class="primary">Explorer Meetups</v-btn>
+                <v-btn large router to="/meetups" class="primary">Meetups</v-btn>
             </v-flex>
             <v-flex xs12 sm6 class="text-xs-center text-sm-left">
-                <v-btn large router to="/meetup/new" class="primary">Organize Meetups</v-btn>
+                <v-btn large router to="/meetup/new" class="primary">Organize</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row wrap>
