@@ -8,6 +8,9 @@
     <v-layout>
       <v-flex xs12 sm6 offset-sm3>
           <v-card>
+              <v-card-title class="title font-weight-regular justify-space-between">
+                <span>Sign Up</span>
+              </v-card-title>
               <v-card-text>
                   <form @submit.prevent="onSignup()">
                       <v-layout row>
@@ -90,6 +93,9 @@ export default {
       password: '',
       confirmPassword: ''
     }
+  },
+  created () {
+    this.$store.dispatch('clearError')
   },
   computed: {
     comparePasswords () {
