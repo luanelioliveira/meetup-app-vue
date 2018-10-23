@@ -3,7 +3,7 @@
         <v-layout row wrap v-if="userIsAuthenticated">
           <v-flex xs12>
             <div class="text-xs-center">
-              <h5>Seja bem vindo(a), {{userAuthenticated.displayName}}!</h5>
+              <h5>{{message}}</h5>
             </div>
             </v-flex>
         </v-layout>
@@ -62,6 +62,10 @@
 <script>
 export default {
   computed: {
+    message () {
+      let name = this.userAuthenticated.displayName.split(' ')
+      return `Welcome ` + name[0] + `!`
+    },
     meetups () {
       return this.$store.getters.featuredMeetups
     },
