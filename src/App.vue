@@ -42,26 +42,23 @@
           {{ item.title }}
         </v-btn>
 
-        <v-menu
+        <v-menu 
+          bottom
+          left
           v-if="userIsAuthenticated"
-          v-model="menu"
-          :close-on-content-click="false"
-          :nudge-width="200"
-          offset-x
+          :nudge-width="300"
+          absolute
         >
-          <v-btn
-            flat
-            slot="activator"
-          >
-            <v-icon left>person</v-icon>
-            Profile
-          </v-btn>
-    
+          <v-btn slot="activator" icon>
+            <v-icon>more_vert</v-icon>
+          </v-btn>    
+
+
           <v-card>
             <v-list>
               <v-list-tile avatar>
                 <v-list-tile-avatar>
-                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                  <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png" alt="John">
                 </v-list-tile-avatar>
     
                 <v-list-tile-content>
@@ -75,20 +72,18 @@
             <v-divider></v-divider>
           
             <v-list>
-              <router-link to="/profile" tag="span" style="cursor: pointer" @click="menu = false">
-                <v-list-tile>
-                  <v-list-tile-action>
-                    <v-icon>settings</v-icon>
-                  </v-list-tile-action>
-                  <v-list-tile-title>Settings</v-list-tile-title>
-                </v-list-tile>
-              </router-link>
+              <v-list-tile to="/profile">
+                <v-list-tile-action>
+                  <v-icon>settings</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    <v-list-tile-title>SETTINGS</v-list-tile-title>
+                </v-list-tile-content>
+            </v-list-tile>
             </v-list>
   
             <v-card-actions>
               <v-spacer></v-spacer>
-    
-              <v-btn flat @click="menu = false">Cancel</v-btn>
               <v-btn color="primary" flat @click="onLogout">Logout</v-btn>
             </v-card-actions>
           </v-card>
