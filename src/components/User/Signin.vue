@@ -44,7 +44,18 @@
                             :disabled = "loading"
                             :loading = "loading"
                           >
-                            Sing In
+                            Login
+                            <span slot="loader" class="custom-loader">
+                              <v-icon light>cached</v-icon>
+                            </span>
+                          </v-btn>
+                          OR
+                          <v-btn 
+                            type="submit"
+                            :disabled = "loading"
+                            :loading = "loading"
+                          >
+                            Sign Up
                             <span slot="loader" class="custom-loader">
                               <v-icon light>cached</v-icon>
                             </span>
