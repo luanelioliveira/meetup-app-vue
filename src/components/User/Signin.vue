@@ -8,6 +8,9 @@
     <v-layout>
       <v-flex xs12 sm6 offset-sm3>
           <v-card>
+              <v-card-title class="title font-weight-regular justify-space-between">
+                <span>Log In</span>
+              </v-card-title>
               <v-card-text>
                   <form @submit.prevent="onSignin()">
                       <v-layout row>
@@ -63,6 +66,9 @@ export default {
       email: '',
       password: ''
     }
+  },
+  created () {
+    this.$store.dispatch('clearError')
   },
   computed: {
     user () {
