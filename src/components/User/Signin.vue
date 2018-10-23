@@ -51,7 +51,7 @@
                           </v-btn>
                           OR
                           <v-btn 
-                            type="submit"
+                            to="/signup"
                             :disabled = "loading"
                             :loading = "loading"
                           >
