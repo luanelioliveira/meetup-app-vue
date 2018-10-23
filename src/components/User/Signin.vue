@@ -50,15 +50,8 @@
                             </span>
                           </v-btn>
                           OR
-                          <v-btn 
-                            to="/signup"
-                            :disabled = "loading"
-                            :loading = "loading"
-                          >
+                          <v-btn to="/signup">
                             Sign Up
-                            <span slot="loader" class="custom-loader">
-                              <v-icon light>cached</v-icon>
-                            </span>
                           </v-btn>
                         </v-flex>
                       </v-layout>
